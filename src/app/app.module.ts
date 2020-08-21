@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SitesComponent } from './sites/sites.component';
+import { PingResultsComponent } from './ping-results/ping-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SitesComponent
+    SitesComponent,
+    PingResultsComponent
   ],
   imports: [
     BrowserModule,

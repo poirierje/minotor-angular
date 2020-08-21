@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NodejsConnectorService } from '../nodejs-connector.service';
+import { ISite } from '../isite';
 
 @Component({
   selector: 'app-sites',
@@ -8,17 +9,26 @@ import { NodejsConnectorService } from '../nodejs-connector.service';
 })
 export class SitesComponent implements OnInit {
 
+  sites: ISite[];
+
   constructor(private _nodejsConnectorService: NodejsConnectorService) { }
 
   ngOnInit(): void {
+    this._nodejsConnectorService.getSites().subscribe( (sites) => {
+      this.sites = sites;
+    });
   }
 
-  getSites() {
-    console.log(1);
-    this._nodejsConnectorService.getSites().subscribe( (sites) => {
-      console.log(2);
-      return sites;
-    });
+  // Return the sites as an Array, splitted (useful for bootstrap grid system)
+  getSitesSplitted( size: number ):  ISite[] {
+    let arr = this.sites;
+    let newArr = [];
+
+    for(let i = 0; i< arr.length; i += size) {
+      newArr.push(arr.slice(i, i + size));
+    }
+
+    return newArr;
   }
 
 }
