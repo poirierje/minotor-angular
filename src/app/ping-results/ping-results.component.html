@@ -1,0 +1,19 @@
+<div class="container">
+
+    <div class="row" *ngFor="let sites of getSitesSplitted( 4 ); let i = index">
+        <div class="col" *ngFor="let site of sites">
+            <div class="site-pings">
+                <div class="site-url">{{ site._url }}</div>
+                <div class="site-times">
+                    <div class="site-time" 
+                         *ngFor="let time of getPingResults( site._url, 50 )" 
+                         [ngStyle]="{'width': '2.01%', 'background-color':rgb(time._responseCode, 1000,time._durationMS)}"
+                         title="(resp:{{time._responseCode}}) {{time._durationMS}} ms"
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
